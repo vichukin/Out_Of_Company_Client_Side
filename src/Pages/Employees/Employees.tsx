@@ -63,7 +63,7 @@ function Employees() {
     { field: "position", headerName: "Position", width: 150 },
     { field: "outOfOfficeBalance", headerName: "Out Of Office Balance", width: 150 },
      //@ts-ignore
-    { field: "status",headerName: "Status", valueGetter:(value,row:boolean) =>row ? "Active": "Inactive"}
+    { field: "status",headerName: "Status", valueGetter:(value,row:Employee) =>row.status ? "Active": "Inactive"}
   ];
   const deactivateEmployee = ()=>{
     api.patch(`/Employee/Deactivate/${selectedRowId}`).then(()=>
