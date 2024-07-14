@@ -57,7 +57,8 @@ function Employees() {
     { field: "id", headerName: "Id" },
     { field: "username", headerName: "Username", width: 150 },
     { field: "fullname", headerName: "Fullname", width: 150 },
-    { field: "peoplePartner", headerName: "People Partner", width: 150, valueGetter: (row: Employee) => row.peoplePartner?.fullname ?? '' },
+    //@ts-ignore
+    { field: "peoplePartner", headerName: "People Partner", width: 150, valueGetter: (value,row: Employee) => row.peoplePartner?.fullname ?? '' },
     { field: "subDivision", headerName: "Sub Division", width: 150 },
     { field: "position", headerName: "Position", width: 150 },
     { field: "outOfOfficeBalance", headerName: "Out Of Office Balance", width: 150 }

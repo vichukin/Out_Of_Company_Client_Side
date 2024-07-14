@@ -45,8 +45,8 @@ const openLeaveRequest = ()=>{
         }
     const getApprovalRequests = () => {
       api.get("approvalRequests").then((resp) => {
-        console.log(resp.data);
         const ar = mapToApprovalRequests(resp.data);
+        console.log(ar);
         setRows(ar);
         setLoading(false);
       }).catch((error) => console.log(error));
@@ -133,12 +133,18 @@ const openLeaveRequest = ()=>{
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Id', width: 25},
-    { field: 'approver.fullname', headerName: 'Approver', width: 150, valueGetter: ( row: ApproveRequest) => row.approver ? row.approver.fullname : ""},
-    { field: 'leaveRequest.fullname', headerName: 'Employee fullname', width: 150,  valueGetter: ( row: ApproveRequest) => row.leaveRequest?.fullname},
-    { field: 'leaveRequest.absenceReason', headerName: 'Absence reason', width: 150,valueGetter: ( row: ApproveRequest) => row.leaveRequest?.absenceReason},
-    { field: 'leaveRequest.startDate', headerName: 'Start date',valueGetter: ( row: ApproveRequest) => row.leaveRequest?.startDate} ,
-    { field: 'leaveRequest.endDate', headerName: 'End date',valueGetter: ( row: ApproveRequest) => row?.leaveRequest?.endDate},
-    { field: 'leaveRequest.comment', headerName: 'Comment', width: 250,valueGetter: (row: ApproveRequest) => row.leaveRequest?.comment} ,
+    //@ts-ignore
+    { field: 'approver.fullname', headerName: 'Approver', width: 150, valueGetter: (value, row: ApproveRequest) => row.approver!=undefined ? row.approver.fullname : ""},
+    //@ts-ignore
+    { field: 'leaveRequest.fullname', headerName: 'Employee fullname', width: 150,  valueGetter: (value, row: ApproveRequest) => row.leaveRequest?.fullname},
+    //@ts-ignore
+    { field: 'leaveRequest.absenceReason', headerName: 'Absence reason', width: 150,valueGetter: ( value,row: ApproveRequest) => row.leaveRequest?.absenceReason},
+    //@ts-ignore
+    { field: 'leaveRequest.startDate', headerName: 'Start date',valueGetter: (value, row: ApproveRequest) => row.leaveRequest?.startDate} ,
+    //@ts-ignore
+    { field: 'leaveRequest.endDate', headerName: 'End date',valueGetter: ( value,row: ApproveRequest) => row?.leaveRequest?.endDate},
+    //@ts-ignore
+    { field: 'leaveRequest.comment', headerName: 'Comment', width: 250,valueGetter: (value,row: ApproveRequest) =>row.leaveRequest?.comment} ,
     { field: 'requestStatus', headerName: 'Request status', width: 150 }
   ];
 
