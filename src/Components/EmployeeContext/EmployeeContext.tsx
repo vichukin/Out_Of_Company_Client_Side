@@ -17,6 +17,7 @@ export interface Employee {
   leaveRequests?: LeaveRequest[];
   peoplePartner?: Employee;
   employees?: Employee[];
+  status: boolean;
 }
 
 interface EmployeeContextProps {
@@ -55,7 +56,8 @@ export const mapToEmployee = (data: any): Employee => {
       projects: data.projects ? mapToProjects(data.projects): undefined,
       employees: data.employees ? mapToEmployees(data.employees) : undefined,
       leaveRequests: data.leaveRequests ? mapToLeaveRequests(data.leaveRequests): undefined,
-      outOfOfficeBalance: data.outOfOfficeBalance ?? null
+      outOfOfficeBalance: data.outOfOfficeBalance ?? null,
+      status: data.status
     };
   };
   export const mapToEmployees = (data: any): Employee[] => {

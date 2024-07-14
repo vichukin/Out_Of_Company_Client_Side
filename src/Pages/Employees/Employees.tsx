@@ -61,9 +61,18 @@ function Employees() {
     { field: "peoplePartner", headerName: "People Partner", width: 150, valueGetter: (value,row: Employee) => row.peoplePartner?.fullname ?? '' },
     { field: "subDivision", headerName: "Sub Division", width: 150 },
     { field: "position", headerName: "Position", width: 150 },
-    { field: "outOfOfficeBalance", headerName: "Out Of Office Balance", width: 150 }
+    { field: "outOfOfficeBalance", headerName: "Out Of Office Balance", width: 150 },
+     //@ts-ignore
+    { field: "status",headerName: "Status", valueGetter:(value,row:boolean) =>row ? "Active": "Inactive"}
   ];
-
+  const deactivateEmployee = ()=>{
+    api.patch(`/Employee/Deactivate/${selectedRowId}`).then(()=>
+    {
+      const row = rows.find(t => t.id === selectedRowId);
+      row!.status = false;
+      navigate('/employees');
+    })
+  }
   return (
     <>
       {selectedEmployee && <EmployeeModal open={modalOpen} onClose={handleCloseModal} employee={selectedEmployee} />}
@@ -86,6 +95,7 @@ function Employees() {
             <Toolbar style={{ justifyContent: 'flex-end' }}>
               <Button variant="contained" onClick={openEmployeeDetails} color="primary" style={{ marginRight: 8 }}>Open</Button>
               { (checkAccess(employee,[PositionEnum.HR_Manager])) && <Button variant="contained" component={Link} to={`/employees/edit/${selectedRowId}`} color="secondary" style={{ marginRight: 8 }}>Edit</Button>}
+              { (checkAccess(employee,[PositionEnum.HR_Manager])) && <Button variant="contained" onClick={deactivateEmployee}  color="warning" style={{ marginRight: 8 }}>Deactivate</Button>}
             </Toolbar>
           </Grid>
         )}
