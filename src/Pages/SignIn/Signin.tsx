@@ -25,7 +25,7 @@ function SignIn() {
       setError,
       formState: { errors }
     } = useForm({
-      resolver: yupResolver(schema) // Используем resolver для yup
+      resolver: yupResolver(schema) 
     });
     React.useEffect(()=>{
       if(employee)
