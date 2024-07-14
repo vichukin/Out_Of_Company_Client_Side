@@ -133,7 +133,7 @@ const openLeaveRequest = ()=>{
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Id', width: 25},
-    { field: 'approver.fullname', headerName: 'Approver', width: 150, valueGetter: ( row: ApproveRequest) => row.approver? row.approver.fullname : ""},
+    { field: 'approver.fullname', headerName: 'Approver', width: 150, valueGetter: ( row: ApproveRequest) => row.approver ? row.approver.fullname : ""},
     { field: 'leaveRequest.fullname', headerName: 'Employee fullname', width: 150,  valueGetter: ( row: ApproveRequest) => row.leaveRequest?.fullname},
     { field: 'leaveRequest.absenceReason', headerName: 'Absence reason', width: 150,valueGetter: ( row: ApproveRequest) => row.leaveRequest?.absenceReason},
     { field: 'leaveRequest.startDate', headerName: 'Start date',valueGetter: ( row: ApproveRequest) => row.leaveRequest?.startDate} ,
