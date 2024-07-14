@@ -66,7 +66,7 @@ function Employees() {
     { field: "status",headerName: "Status", valueGetter:(value,row:Employee) =>row.status ? "Active": "Inactive"}
   ];
   const deactivateEmployee = ()=>{
-    api.patch(`/Employee/Deactivate/${selectedRowId}`).then(()=>
+    api.patch(`/Employee/Deactivate/$${selectedRowId}`).then(()=>
     {
       const row = rows.find(t => t.id === selectedRowId);
       row!.status = false;
