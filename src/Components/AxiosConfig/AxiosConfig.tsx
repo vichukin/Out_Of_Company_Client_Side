@@ -3,7 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const api = axios.create({
-  baseURL: 'https://localhost:7100/api', 
+  baseURL: 'https://outofofficeapi.azure-api.net/api', 
 });
 
 api.interceptors.request.use(
