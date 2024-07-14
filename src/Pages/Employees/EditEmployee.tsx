@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
 import { checkAccess, mapToEmployees, useEmployee } from '../../Components/EmployeeContext/EmployeeContext';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import api from '../../Components/AxiosConfig/AxiosConfig';
@@ -29,7 +28,7 @@ const schema = yup.object().shape({
 });
 
 const EditEmployee: React.FC = () => {
-    const {employee,setEmployee} = useEmployee();
+    const {employee} = useEmployee();
     const { employeeId } = useParams<{ employeeId: string }>();
     const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(true);
@@ -43,7 +42,7 @@ const EditEmployee: React.FC = () => {
     });
     const [peoplePartners, setPeoplePartners] = useState<any[]>([]);
     const [photo, setPhoto] = useState<string>(''); 
-    const { register, handleSubmit, setValue, formState: { errors }, watch } = useForm({
+    const { register, setValue, formState: { errors }, watch } = useForm({
         resolver: yupResolver(schema),
         defaultValues: edittedEmployee
     });
@@ -125,8 +124,7 @@ const EditEmployee: React.FC = () => {
                 <Grid container spacing={2} marginTop="1%">
                     <Grid item xs={4}></Grid>
                     <Grid item xs={4}>
-                        {/* //@ts-ignore */}
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form onSubmit={()=>onSubmit}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <Typography variant="h4" textAlign="center">Edit Employee</Typography>

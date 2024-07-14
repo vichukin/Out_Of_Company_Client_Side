@@ -3,17 +3,13 @@ import { Link,useNavigate } from 'react-router-dom';
 import { checkAccess, useEmployee } from '../EmployeeContext/EmployeeContext';
 //@ts-ignore
 import Cookies from 'js-cookie';
-import { Button, Grid, Typography, Tab,Tabs,Toolbar,AppBar,Box } from '@mui/material';
+import {  Grid, Typography, Tab,Tabs,Toolbar,AppBar,Box } from '@mui/material';
 import { PositionEnum } from '../../Classes/PositionEnum';
 
 function Header() {
   const [value, setValue] = React.useState(0);
   const navigate = useNavigate()
 
-
-  const handleChange = (event: any, newValue: any) => {
-    setValue(newValue);
-  };
   const {employee, setEmployee} = useEmployee();
   const handleSignOut = () => {
     Cookies.remove('accessToken');

@@ -42,7 +42,7 @@ function RegisterEmployee() {
     const navigate = useNavigate();
     const [peoplePartners, setPeoplePartners] = useState<any[]>([]);
     const [open, setOpen] = React.useState(false);
-    const {employee,setEmployee} = useEmployee();
+    const {employee} = useEmployee();
     useEffect(() => {
         if(!checkAccess(employee,[PositionEnum.HR_Manager]))
         {
@@ -126,8 +126,7 @@ function RegisterEmployee() {
         <Grid container spacing={2} marginTop={"1%"}>
             <Grid item xs={4}></Grid>
             <Grid item xs={4}>
-                {/* //@ts-ignore */}
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit as any)}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Typography variant='h4' textAlign={"center"}>Register</Typography>

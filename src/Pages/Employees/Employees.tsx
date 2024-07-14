@@ -1,5 +1,5 @@
 // src/components/Employees.tsx
-import { Box, Button, Container, Grid, Typography, Toolbar, CircularProgress, Snackbar, Alert } from '@mui/material';
+import {  Button, Grid, Typography, Toolbar, CircularProgress } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import api from '../../Components/AxiosConfig/AxiosConfig';
@@ -10,21 +10,16 @@ import { PositionEnum } from '../../Classes/PositionEnum';
 
 function Employees() {
   const navigate = useNavigate();
-  const {employee,setEmployee} = useEmployee();
+  const {employee} = useEmployee();
   const [loading, setLoading] = React.useState(true);
   const [rows, setRows] = React.useState<Employee[]>([]);
   const [selectedRowId, setSelectedRowId] = React.useState<string | null>(null);
-  const [open, setOpen] = React.useState(false);
-  const [errorText, setErrorText] = React.useState('');
   const [modalOpen, setModalOpen] = React.useState(false);
   const [selectedEmployee, setSelectedEmployee] = React.useState<Employee | null>(null);
 
   const handleCloseModal = () => {
     setModalOpen(false);
     setSelectedEmployee(null);
-  };
-  const handleClose = () => {
-    setOpen(false);
   };
   
   useEffect(() => {
@@ -62,7 +57,7 @@ function Employees() {
     { field: "id", headerName: "Id" },
     { field: "username", headerName: "Username", width: 150 },
     { field: "fullname", headerName: "Fullname", width: 150 },
-    { field: "peoplePartner", headerName: "People Partner", width: 150, valueGetter: (params, row) => row.peoplePartner?.fullname ?? '' },
+    { field: "peoplePartner", headerName: "People Partner", width: 150, valueGetter: (row: Employee) => row.peoplePartner?.fullname ?? '' },
     { field: "subDivision", headerName: "Sub Division", width: 150 },
     { field: "position", headerName: "Position", width: 150 },
     { field: "outOfOfficeBalance", headerName: "Out Of Office Balance", width: 150 }
@@ -71,13 +66,7 @@ function Employees() {
   return (
     <>
       {selectedEmployee && <EmployeeModal open={modalOpen} onClose={handleCloseModal} employee={selectedEmployee} />}
-      <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        open={open}
-        onClose={handleClose}
-      >
-        <Alert variant='filled' severity="error">{errorText}</Alert>
-      </Snackbar>
+      
       <Grid container spacing={1}>
         <Grid item xs={4}>
           <Typography variant='h5'>Employees</Typography>

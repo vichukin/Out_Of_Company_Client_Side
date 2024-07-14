@@ -1,8 +1,6 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography, Box } from '@mui/material';
 import { LeaveRequest } from '../../Classes/LeaveRequest';
-import { ApproveRequest } from '../../Classes/ApprovalRequest';
-import { Employee } from '../../Components/EmployeeContext/EmployeeContext';
 interface LeaveRequestModalProps {
     open: boolean;
     onClose: () => void;

@@ -1,6 +1,6 @@
 // src/components/Projects.js
 import React, { useEffect } from 'react';
-import { Box, Button, Container, Grid, Typography, Toolbar, CircularProgress } from '@mui/material';
+import {  Button, Grid, Typography, Toolbar, CircularProgress } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../../Components/AxiosConfig/AxiosConfig';
 import { DataGrid, GridColDef,GridRowSelectionModel } from '@mui/x-data-grid';
@@ -12,7 +12,7 @@ import ProjectModal from './ProjectModal';
 
 function Projects() {
   const [loading, setLoading] = React.useState(true);
-  const {employee, setEmployee} = useEmployee();
+  const {employee} = useEmployee();
   const [modalOpen, setModalOpen] = React.useState(false);
   const [project,setProject] = React.useState<Project>();
 
@@ -62,7 +62,7 @@ function Projects() {
     getProjects();
   },[])
   const ActiveProject = ()=>{
-    api.patch(`Projects/Active/${selectedRowId}`).then((resp)=>{
+    api.patch(`Projects/Active/${selectedRowId}`).then(()=>{
       var row = rows!.find(t=>t.id==selectedRowId);
       row!.projectStatus = ProjectStatus[ProjectStatus.Active];
       row!.endDate = "To present";
@@ -70,7 +70,7 @@ function Projects() {
     })
   }
   const InactiveProject = ()=>{
-    api.patch(`Projects/Inactive/${selectedRowId}`).then((resp)=>{
+    api.patch(`Projects/Inactive/${selectedRowId}`).then(()=>{
       var row = rows!.find(t=>t.id==selectedRowId);
       row!.projectStatus = ProjectStatus[ProjectStatus.Inactive];
       row!.endDate = new Date().toISOString().split("T")[0];

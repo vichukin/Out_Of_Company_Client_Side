@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import  { createContext, useContext, useState, ReactNode } from 'react';
 import { PositionEnum } from '../../Classes/PositionEnum';
-import { Project, mapToProject, mapToProjects } from '../../Classes/Project';
+import { Project, mapToProjects } from '../../Classes/Project';
 import { LeaveRequest, mapToLeaveRequests } from '../../Classes/LeaveRequest';
 import { SubDivision } from '../../Classes/SubDivision';
 

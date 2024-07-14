@@ -38,7 +38,6 @@ function CreateLeaveRequest() {
     const {
         register,
         handleSubmit,
-        setError,
         formState:{errors}
     } = useForm({
         resolver: yupResolver(schema)

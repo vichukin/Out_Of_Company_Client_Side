@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography, Box, Grid, Avatar } from '@mui/material';
-import { Employee } from '../../Components/EmployeeContext/EmployeeContext';
+
 import { Project } from '../../Classes/Project';
 import { ProjectStatus } from '../../Classes/ProjectStatus';
 import { ProjectType } from '../../Classes/ProjectType';

@@ -1,14 +1,13 @@
 // src/components/AproveRequests.js
-import { Box, Button, Container, Grid, Typography, Toolbar, Snackbar, Alert, CircularProgress, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import {  Button, Grid, Typography, Toolbar, Snackbar, Alert, CircularProgress, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import {  useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import api from '../../Components/AxiosConfig/AxiosConfig';
-import { DataGrid, GridColDef, GridRenderCellParams, GridRowSelectionModel } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRowSelectionModel } from '@mui/x-data-grid';
 import { mapToAprovalRequests as mapToApprovalRequests, ApproveRequest } from '../../Classes/ApprovalRequest';
 import { RequestStatus } from '../../Classes/RequestStatus';
 import { LeaveRequest, mapToLeaveRequest } from '../../Classes/LeaveRequest';
-import { AbsenceReason } from '../../Classes/AbesenceReason';
-import { Employee, checkAccess, useEmployee } from '../../Components/EmployeeContext/EmployeeContext';
+import {  checkAccess, useEmployee } from '../../Components/EmployeeContext/EmployeeContext';
 import { PositionEnum } from '../../Classes/PositionEnum';
 import LeaveRequestModal from '../LeaveRequests/LeaveRequestModal';
 import TextArea from '../../Components/TextArea/TextArea';
@@ -20,7 +19,7 @@ function AprovalRequests() {
 
   const [rows, setRows] = React.useState<ApproveRequest[]>([]);
   const [selectedRowId, setSelectedRowId] = React.useState<number | null>(null);
-  const {employee,setEmployee} = useEmployee();
+  const {employee} = useEmployee();
   const [open, setOpen] = React.useState(false);
   
   const [loading, setLoading] = React.useState(true);
@@ -134,12 +133,12 @@ const openLeaveRequest = ()=>{
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Id', width: 25},
-    { field: 'approver.fullname', headerName: 'Approver', width: 150, valueGetter: (value, row: ApproveRequest) => row.approver? row.approver.fullname : ""},
-    { field: 'leaveRequest.fullname', headerName: 'Employee fullname', width: 150,  valueGetter: (value, row: ApproveRequest) => row.leaveRequest?.fullname},
-    { field: 'leaveRequest.absenceReason', headerName: 'Absence reason', width: 150,valueGetter: (value, row: ApproveRequest) => row.leaveRequest?.absenceReason},
-    { field: 'leaveRequest.startDate', headerName: 'Start date',valueGetter: (value, row: ApproveRequest) => row.leaveRequest?.startDate} ,
-    { field: 'leaveRequest.endDate', headerName: 'End date',valueGetter: (value, row: ApproveRequest) => row?.leaveRequest?.endDate},
-    { field: 'leaveRequest.comment', headerName: 'Comment', width: 250,valueGetter: (value, row: ApproveRequest) => row.leaveRequest?.comment} ,
+    { field: 'approver.fullname', headerName: 'Approver', width: 150, valueGetter: ( row: ApproveRequest) => row.approver? row.approver.fullname : ""},
+    { field: 'leaveRequest.fullname', headerName: 'Employee fullname', width: 150,  valueGetter: ( row: ApproveRequest) => row.leaveRequest?.fullname},
+    { field: 'leaveRequest.absenceReason', headerName: 'Absence reason', width: 150,valueGetter: ( row: ApproveRequest) => row.leaveRequest?.absenceReason},
+    { field: 'leaveRequest.startDate', headerName: 'Start date',valueGetter: ( row: ApproveRequest) => row.leaveRequest?.startDate} ,
+    { field: 'leaveRequest.endDate', headerName: 'End date',valueGetter: ( row: ApproveRequest) => row?.leaveRequest?.endDate},
+    { field: 'leaveRequest.comment', headerName: 'Comment', width: 250,valueGetter: (row: ApproveRequest) => row.leaveRequest?.comment} ,
     { field: 'requestStatus', headerName: 'Request status', width: 150 }
   ];
 
@@ -155,8 +154,8 @@ const openLeaveRequest = ()=>{
         <TextArea placeholder="Comment" onChange={(e: any)=>setComment(e.target.value)}></TextArea>
       </DialogContent>
       <DialogActions>
-        <Button onClick={ status == RequestStatus.Approved ? (e)=>approveRequest(false) : (e)=> rejectRequest(false)} color="primary">No</Button>
-        <Button onClick={ status == RequestStatus.Approved ? (e)=>approveRequest(true) : (e)=> rejectRequest(true)} color="success">Leave</Button>
+        <Button onClick={ status == RequestStatus.Approved ? ()=>approveRequest(false) : ()=> rejectRequest(false)} color="primary">No</Button>
+        <Button onClick={ status == RequestStatus.Approved ? ()=>approveRequest(true) : ()=> rejectRequest(true)} color="success">Leave</Button>
       </DialogActions>
     </Dialog>}
     <Snackbar
@@ -179,8 +178,8 @@ const openLeaveRequest = ()=>{
         <Grid item xs={12}>
           <Toolbar style={{ justifyContent: 'flex-end' }}>
             <Button variant="contained" onClick={openLeaveRequest} color="primary" style={{ marginRight: 8 }}>Open</Button>
-            <Button variant="contained" onClick={(e)=>changeStatusWithComment(RequestStatus.Approved)} color="success" style={{ marginRight: 8 }}>Approve</Button>
-            <Button variant="contained" onClick={(e)=>changeStatusWithComment(RequestStatus.Rejected)} color="error">Reject</Button>
+            <Button variant="contained" onClick={()=>changeStatusWithComment(RequestStatus.Approved)} color="success" style={{ marginRight: 8 }}>Approve</Button>
+            <Button variant="contained" onClick={()=>changeStatusWithComment(RequestStatus.Rejected)} color="error">Reject</Button>
           </Toolbar>
         </Grid>
       )}

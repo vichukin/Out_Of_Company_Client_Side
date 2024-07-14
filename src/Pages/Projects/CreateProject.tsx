@@ -1,4 +1,4 @@
-import { Button,FormHelperText, FormControl, Grid, InputLabel, Select, TextField, Typography, SelectChangeEvent, MenuItem } from '@mui/material';
+import { Button,FormHelperText, FormControl, Grid, InputLabel, Select, TextField, Typography, MenuItem } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { Link,useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ function CreateProject(){
         memberIds: yup.mixed().notRequired()
     })
 
-    const {employee,setEmployee} = useEmployee();
+    const {employee} = useEmployee();
     const navigate = useNavigate();
     const [projectManagers,setProjectManagers] = React.useState<Employee[]>()
     useEffect(()=>{
@@ -66,15 +66,10 @@ function CreateProject(){
     const {
         register,
         handleSubmit,
-        setError,
         formState:{errors}
     } = useForm({
         resolver: yupResolver(schema)
     })
-    const [reason, setReason] = React.useState('');
-    const handleChange = (event: SelectChangeEvent) => {
-        setReason(event.target.value as string);
-      };
     const [startDate,setStartDate] = React.useState<Dayjs|null>(dayjs())
     const handleMemberChange = (e:any)=>{
         setMemberIds(

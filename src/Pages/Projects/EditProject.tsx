@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, FormHelperText, FormControl, Grid, InputLabel, Select, TextField, Typography, SelectChangeEvent, MenuItem, TextareaAutosize, CircularProgress } from '@mui/material';
+import { Button, FormHelperText, FormControl, Grid,MenuItem, InputLabel, Select, TextField, Typography, CircularProgress } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -10,7 +10,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../Components/AxiosConfig/AxiosConfig';
 import { Employee, checkAccess, mapToEmployees, useEmployee } from '../../Components/EmployeeContext/EmployeeContext';
 import { PositionEnum } from '../../Classes/PositionEnum';
-import TextArea from '../../Components/TextArea/TextArea';
 
 function EditProject() {
     const schema = yup.object().shape({
@@ -24,7 +23,6 @@ function EditProject() {
     const { employee } = useEmployee();
     const navigate = useNavigate();
     const { projectId } = useParams<{ projectId: string }>();
-    const [project, setProject] = useState<any>({});
     const [projectManagers, setProjectManagers] = useState<Employee[]>([]);
     const [projectType, setProjectType] = useState<string>('');
     const [projectManager, setProjectManager] = useState<string>('');
@@ -49,7 +47,6 @@ function EditProject() {
 
         const getProject = async () => {
             api.get(`Projects/${projectId}`).then((resp)=>{
-                setProject(resp.data);
                 setStartDate(dayjs(resp.data.startDate));
                 setProjectManager(resp.data.projectManager.id);
                 setProjectType(resp.data.projectType.toString());
@@ -86,12 +83,12 @@ function EditProject() {
         data.projectType = +data.projectType;
         console.log(data);
         
-        api.put(`Projects/${projectId}`, data).then(resp => {
+        api.put(`Projects/${projectId}`, data).then(() => {
             navigate("/projects");
         });
     };
 
-    const { register, handleSubmit, setError,setValue, formState: { errors } } = useForm({
+    const { register, handleSubmit,setValue, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
     const handleMemberChange = (e:any)=>{

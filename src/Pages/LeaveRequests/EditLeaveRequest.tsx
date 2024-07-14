@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Button, FormHelperText, FormControl, Grid, InputLabel, Select, TextField, Typography, SelectChangeEvent, MenuItem, CircularProgress } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import  { useEffect, useState } from 'react';
+import { Button, FormHelperText, FormControl, Grid, InputLabel, Select, TextField, Typography, MenuItem, CircularProgress } from '@mui/material';
+import {  LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import dayjs, { Dayjs } from 'dayjs';
@@ -19,7 +19,6 @@ function EditLeaveRequest() {
 
     const navigate = useNavigate();
     const { leaveRequestId } = useParams<{ leaveRequestId: string }>();
-    const [leaveRequest, setLeaveRequest] = useState<any>({});
     const [absenceReason, setAbsenceReason] = useState<string>('');
     const [comment, setComment] = useState<string>('');
     const [date, setDate] = useState<DateRange<Dayjs>>([dayjs(), dayjs()]);
@@ -29,7 +28,6 @@ function EditLeaveRequest() {
         const getLeaveRequest = async () => {
             api.get(`LeaveRequests/${leaveRequestId}`).then((resp) => {
                 const data = resp.data;
-                setLeaveRequest(data);
                 setAbsenceReason(data.absenceReason.toString());
                 setComment(data.comment || '');
                 setDate([dayjs(data.startDate), dayjs(data.endDate)]);
@@ -51,7 +49,7 @@ function EditLeaveRequest() {
         data.absenceReason = +data.absenceReason;
         console.log(data);
         
-        api.put(`LeaveRequests/${leaveRequestId}`, data).then(resp => {
+        api.put(`LeaveRequests/${leaveRequestId}`, data).then( ()=> {
             navigate("/leave-requests");
         });
     };

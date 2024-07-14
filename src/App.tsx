@@ -1,14 +1,13 @@
 import { useState,useEffect } from 'react'
 import Header from './Components/header/header'
 import './App.css'
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import {  Route, Routes, useNavigate } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import LeaveRequests from './Pages/LeaveRequests/LeaveRequests';
 import Projects from './Pages/Projects/Projects';
 import Employees from './Pages/Employees/Employees';
 import SignIn from './Pages/SignIn/Signin';
 import { Box, CircularProgress } from '@mui/material';
-import AuthGuard from './Components/AuthGuard/AuthGuard';
 import {  mapToEmployee, useEmployee } from './Components/EmployeeContext/EmployeeContext';
 //@ts-ignore
 import Cookies from 'js-cookie';
