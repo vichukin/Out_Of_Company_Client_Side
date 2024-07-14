@@ -3,13 +3,13 @@ import { Button, Grid, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios from 'axios';
 import React from 'react';
 //@ts-ignore
 import Cookies from 'js-cookie';
 import SignInModel from '../../Classes/SignInModel';
 import { useNavigate  } from 'react-router-dom';
 import { useEmployee, mapToEmployee } from '../../Components/EmployeeContext/EmployeeContext';
+import api from '../../Components/AxiosConfig/AxiosConfig';
    
     
 function SignIn() {
@@ -32,7 +32,7 @@ function SignIn() {
         navigate('/');
     },[])
     const onSubmit = (data?: SignInModel) => {
-        axios.post('https://localhost:7100/api/Authentication/Login', data, {
+        api.post('/Authentication/Login', data, {
           headers: {
             'Content-Type': 'application/json'
           },
