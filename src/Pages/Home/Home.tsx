@@ -19,7 +19,7 @@ const Home: React.FC = () => {
                             alt="Manage Leaves"
                             height="140"
                             style={{ objectFit: 'contain' }}
-                            image="http://127.0.0.1:10000/devstoreaccount1/employeeimages/LeaveRequests.jpg" // Замените на реальный путь к изображению
+                            image="https://outofoficestorage.blob.core.windows.net/employeeimages/LeaveRequests.jpg" // Замените на реальный путь к изображению
                         />
                         <CardContent>
                             <Typography variant="h6" component="div">
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
                             alt="Team Collaboration"
                             height="140"
                             style={{ objectFit: 'contain' }}
-                            image="http://127.0.0.1:10000/devstoreaccount1/employeeimages/ApprovalRequests.jpg" // Замените на реальный путь к изображению
+                            image="https://outofoficestorage.blob.core.windows.net/employeeimages/ApprovalRequests.jpg" // Замените на реальный путь к изображению
                         />
                         <CardContent>
                             <Typography variant="h6" component="div">
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
                             component="img"
                             alt="Projects Management"
                             height="140"
-                            image="http://127.0.0.1:10000/devstoreaccount1/employeeimages/Projects.jpg" // Замените на реальный путь к изображению
+                            image="https://outofoficestorage.blob.core.windows.net/employeeimages/Projects.jpg" // Замените на реальный путь к изображению
                             style={{ objectFit: 'contain' }}
                         />
                         <CardContent>
@@ -75,7 +75,7 @@ const Home: React.FC = () => {
                             component="img"
                             alt="Employee Management"
                             height="140"
-                            image="http://127.0.0.1:10000/devstoreaccount1/employeeimages/Employees.jpg" // Замените на реальный путь к изображению
+                            image="https://outofoficestorage.blob.core.windows.net/employeeimages/Employees.jpg" // Замените на реальный путь к изображению
                             style={{ objectFit: 'contain' }}
                         />
                         <CardContent>
