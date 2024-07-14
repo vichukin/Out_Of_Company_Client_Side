@@ -95,7 +95,7 @@ function Employees() {
             <Toolbar style={{ justifyContent: 'flex-end' }}>
               <Button variant="contained" onClick={openEmployeeDetails} color="primary" style={{ marginRight: 8 }}>Open</Button>
               { (checkAccess(employee,[PositionEnum.HR_Manager])) && <Button variant="contained" component={Link} to={`/employees/edit/${selectedRowId}`} color="secondary" style={{ marginRight: 8 }}>Edit</Button>}
-              { (checkAccess(employee,[PositionEnum.HR_Manager])) && <Button variant="contained" onClick={deactivateEmployee}  color="warning" style={{ marginRight: 8 }}>Deactivate</Button>}
+              { (checkAccess(employee,[PositionEnum.HR_Manager])) && <Button variant="contained" onClick={deactivateEmployee}  color="error" style={{ marginRight: 8 }}>Deactivate</Button>}
             </Toolbar>
           </Grid>
         )}
