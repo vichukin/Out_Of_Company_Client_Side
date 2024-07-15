@@ -63,7 +63,33 @@ function SignIn() {
   
     return (
       <Grid container spacing={2} marginTop={"3%"}>
-        <Grid item xs={4}></Grid>
+        <Grid item xs={4}>
+          <Grid container spacing={2} >
+            <Grid item xs={12}>
+              <Typography variant="h6">You can use this sign-in information for testing:</Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant='body1'><strong>Position:</strong> Administrator</Typography>
+                <Typography variant='body1'><strong>Username:</strong> test</Typography>
+                <Typography variant='body1'><strong>Password:</strong> zaq1@WSX</Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant='body1'><strong>Position:</strong> HR manager</Typography>
+                <Typography variant='body1'><strong>Username:</strong> hrmtest</Typography>
+                <Typography variant='body1'><strong>Password:</strong> zaq1@WSX</Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant='body1'><strong>Position:</strong> Project manager</Typography>
+                <Typography variant='body1'><strong>Username:</strong> prmtest</Typography>
+                <Typography variant='body1'><strong>Password:</strong> zaq1@WSX</Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant='body1'><strong>Position:</strong> Employee</Typography>
+                <Typography variant='body1'><strong>Username:</strong> emptest</Typography>
+                <Typography variant='body1'><strong>Password:</strong> zaq1@WSX</Typography>
+            </Grid>
+          </Grid>
+        </Grid>
         <Grid item xs={4}>
             <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={4}>
